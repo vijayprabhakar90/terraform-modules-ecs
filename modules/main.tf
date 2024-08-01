@@ -2,38 +2,16 @@ provider "aws" {
   region = var.region
 }
 
-module "ecs_task_definition" {
-  source = "./ecs_task_definition"
-
-  family                = var.task_definition_family
-  container_definitions = var.container_definitions
-  cpu                   = var.ecs_cpu
-  memory                = var.ecs_memory
-  execution_role_arn    = var.execution_role_arn
-  task_role_arn         = var.task_role_arn
-}
-
 module "ecs" {
   source = "./ecs"
-
-  cluster_name     = var.cluster_name
-  service_name     = var.service_name
-  task_definition  = module.ecs_task_definition.task_definition_arn
-  desired_count    = var.desired_count
-  target_group_arn = var.lb_target_group_arn
-  container_name   = var.container_name
-  container_port   = var.container_port
-  subnet_ids       = var.public_subnets
-  security_groups  = var.alb_sg_id
-}
-
-module "target_group" {
-  source = "./target_group_listeners"
-
-  region = var.region
-  name = var.service_name
-  target_groups = var.target_group
-  listener_rules = var.listener_rules
-  vpc_id = var.vpc_id
-
+  region          = var.region
+  cluster_name    = var.cluster_name
+  vpc_id          = var.vpc_id
+  subnets         = var.subnets
+  security_groups = var.security_groups
+  execution_role_arn  = var.execution_role_arn
+  task_role_arn     = var.task_role_arn
+  target_groups     = var.target_groups
+  listener_rules    = var.listener_rules
+  ecs_services      = var.ecs_services
 }

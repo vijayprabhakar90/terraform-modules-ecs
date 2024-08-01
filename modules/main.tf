@@ -26,3 +26,14 @@ module "ecs" {
   subnet_ids       = var.public_subnets
   security_groups  = var.alb_sg_id
 }
+
+module "target_group" {
+  source = "../target_group_listeners"
+
+  region = var.region
+  name = var.service_name
+  target_groups = var.target_group
+  listener_rules = var.listener_rules
+  vpc_id = var.vpc_id
+
+}

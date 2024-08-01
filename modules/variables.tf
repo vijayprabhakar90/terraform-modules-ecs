@@ -72,3 +72,14 @@ variable "public_subnets" {
   description = "List of public subnets for ecs service"
   type = list(string)
 }
+
+variable "target_group" {
+  description = "Target group values"
+  type = list(object)
+}
+
+variable "listener_rules" {
+  description = "Listener rules"
+  type = list(object)
+}
+

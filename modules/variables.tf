@@ -72,8 +72,3 @@ variable "public_subnets" {
   description = "List of public subnets for ecs service"
   type = list(string)
 }
-
-variable "task_definition_arn" {
-  description = "Task def arn for creating the svc"
-  type = string
-}

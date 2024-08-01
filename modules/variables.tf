@@ -113,6 +113,7 @@ variable "ecs_services" {
     container_port   = number
   }))
 
+}
 
 variable "vpc_id" {
   description = "VPC ID"

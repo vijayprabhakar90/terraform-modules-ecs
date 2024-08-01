@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_lb_target_group" "tg" {
   count = length(var.target_groups)
   
-  name     = var.target_groups[count.index].name
+  name     = replace(var.target_groups[count.index].name, "/[^a-zA-Z0-9-]/", "-")
   port     = var.target_groups[count.index].port
   protocol = var.target_groups[count.index].protocol
   vpc_id   = var.vpc_id

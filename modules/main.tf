@@ -18,11 +18,11 @@ module "ecs" {
 
   cluster_name     = var.cluster_name
   service_name     = var.service_name
-  task_definition  = module.ecs_task_definition.task_definition_arn
+  task_definition  = var.task_definition_arn
   desired_count    = var.desired_count
-  target_group_arn = module.alb.lb_target_group_arn
+  target_group_arn = var.lb_target_group_arn
   container_name   = var.container_name
   container_port   = var.container_port
-  subnet_ids        = module.vpc.public_subnets
-  security_groups   = [module.alb.alb_sg_id, module.alb.ecs_sg_id]
+  subnet_ids       = var. public_subnets
+  security_groups  = var.alb_sg_id
 }

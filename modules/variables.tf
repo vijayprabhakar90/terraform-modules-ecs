@@ -73,13 +73,48 @@ variable "public_subnets" {
   type = list(string)
 }
 
-variable "target_group" {
-  description = "Target group values"
-  type = list(object)
+variable "target_groups" {
+  description = "List of target groups"
+  type = list(object({
+    name     = string
+    port     = number
+    protocol = string
+  }))
 }
 
 variable "listener_rules" {
-  description = "Listener rules"
-  type = list(object)
+  description = "List of listener rules"
+  type = list(object({
+    listener_arn = string
+    priority     = number
+    host         = string
+  }))
 }
 
+variable "ecs_services" {
+  description = "List of ECS services"
+  type = list(object({
+    service_name         = string
+    family               = string
+    container_definitions = list(object({
+      name                = string
+      image               = string
+      essential           = bool
+      portMappings        = list(object({
+        containerPort = number
+        hostPort      = number
+      }))
+      memoryReservation = number
+    }))
+    cpu              = string
+    memory           = string
+    desired_count    = number
+    container_name   = string
+    container_port   = number
+  }))
+
+
+variable "vpc_id" {
+  description = "VPC ID"
+  type = string
+}

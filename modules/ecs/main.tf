@@ -1,7 +1,3 @@
-resource "aws_ecs_cluster" "main" {
-  name = var.cluster_name
-}
-
 resource "aws_ecs_service" "main" {
   name            = var.service_name
   cluster         = aws_ecs_cluster.main.id

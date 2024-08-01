@@ -28,7 +28,7 @@ module "ecs" {
 }
 
 module "target_group" {
-  source = "../target_group_listeners"
+  source = "./target_group_listeners"
 
   region = var.region
   name = var.service_name

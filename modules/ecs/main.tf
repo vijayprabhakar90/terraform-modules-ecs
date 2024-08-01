@@ -45,7 +45,7 @@ resource "aws_ecs_service" "main" {
   count = length(var.ecs_services)
 
   name            = var.ecs_services[count.index].service_name
-  cluster         = aws_ecs_cluster.main.id
+  cluster         = var.cluster_name
   task_definition = aws_ecs_task_definition.main[count.index].arn
   desired_count   = var.ecs_services[count.index].desired_count
   launch_type     = "FARGATE"

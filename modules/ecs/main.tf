@@ -45,7 +45,7 @@ resource "aws_ecs_service" "main" {
   cluster         = var.cluster_name
   task_definition = aws_ecs_task_definition.main[count.index].arn
   desired_count   = var.ecs_services[count.index].desired_count
-  launch_type     = "FARGATE"
+  launch_type     = "EC2"
   network_configuration {
     subnets         = var.subnets
     security_groups = var.security_groups

@@ -3,7 +3,7 @@ resource "aws_ecs_task_definition" "main" {
   container_definitions = var.container_definitions
   network_mode          = "awsvpc"
 
-  requires_compatibilities = ["FARGATE"]
+  requires_compatibilities = ["EC2"]
   cpu                      = var.cpu
   memory                   = var.memory
   execution_role_arn       = var.execution_role_arn

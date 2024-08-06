@@ -46,11 +46,11 @@ resource "aws_ecs_service" "main" {
   task_definition = aws_ecs_task_definition.main[count.index].arn
   desired_count   = var.ecs_services[count.index].desired_count
   launch_type     = "EC2"
-  network_configuration {
+  /*network_configuration {
     subnets         = var.subnets
     security_groups = var.security_groups
     assign_public_ip = true
-  }
+  }*/
   load_balancer {
     target_group_arn = aws_lb_target_group.tg[count.index].arn
     container_name   = var.ecs_services[count.index].container_name

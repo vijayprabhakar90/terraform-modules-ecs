@@ -9,7 +9,7 @@ resource "aws_lb_target_group" "tg" {
   port     = var.target_groups[count.index].port
   protocol = var.target_groups[count.index].protocol
   vpc_id   = var.vpc_id
-  target_type = "ip"
+  target_type = "instance"
 }
 
 resource "aws_lb_listener_rule" "rule" {

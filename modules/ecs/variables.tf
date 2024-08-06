@@ -66,8 +66,6 @@ variable "ecs_services" {
       }))
       memoryReservation = number
     }))
-    cpu              = string
-    memory           = string
     desired_count    = number
     container_name   = string
     container_port   = number

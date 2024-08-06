@@ -32,12 +32,9 @@ resource "aws_ecs_task_definition" "main" {
   count = length(var.ecs_services)
 
   family                = var.ecs_services[count.index].family
-  network_mode          = "awsvpc"
-  requires_compatibilities = ["FARGATE"]
+  requires_compatibilities = ["EC2"]
   execution_role_arn    = var.execution_role_arn
   task_role_arn         = var.task_role_arn
-  cpu                   = var.ecs_services[count.index].cpu
-  memory                = var.ecs_services[count.index].memory
   container_definitions = jsonencode(var.ecs_services[count.index].container_definitions)
 }
 

@@ -8,7 +8,7 @@ variable "container_definitions" {
   type        = string
 }
 
-variable "cpu" {
+/*variable "cpu" {
   description = "The number of cpu units used by the task"
   type        = string
   default     = "256"
@@ -18,7 +18,7 @@ variable "memory" {
   description = "The amount of memory (in MiB) used by the task"
   type        = string
   default     = "512"
-}
+}*/
 
 variable "execution_role_arn" {
   description = "The ARN of the task execution role"
